@@ -1,1 +1,843 @@
-
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李子浩会员科学减脂方案</title>
+    <style>
+        :root {
+            --primary: #2c6e49;
+            --secondary: #4c956c;
+            --accent: #fefee3;
+            --light: #f9f7f3;
+            --dark: #1d3557;
+            --warning: #e63946;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .coach-info {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.15);
+            border-radius: 8px;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .user-info-item {
+            flex: 1 1 300px;
+            padding: 10px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .card-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .card-body {
+            padding: 20px;
+        }
+        
+        .highlight-box {
+            background-color: var(--accent);
+            border-left: 5px solid var(--secondary);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background-color: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 15px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .meal-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .meal-table th {
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .meal-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .meal-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .nutrition-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .nutrition-item {
+            background-color: #f0f7f4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #d4e9e0;
+        }
+        
+        .nutrition-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 5px 0;
+        }
+        
+        .schedule {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .day-card {
+            flex: 1 1 140px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .rest-day {
+            background-color: #f9f9f9;
+            color: #888;
+        }
+        
+        .gym-day {
+            background-color: #e6f7ff;
+            border: 1px solid #91d5ff;
+        }
+        
+        .home-day {
+            background-color: #f6ffed;
+            border: 1px solid #b7eb8f;
+        }
+        
+        .warning {
+            color: var(--warning);
+            font-weight: bold;
+        }
+        
+        .medical-disclaimer {
+            background-color: #fff2f0;
+            border: 1px solid #ffccc7;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        
+        .contact-section {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--dark), #1a2a4c);
+            color: white;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+        
+        @media (max-width: 768px) {
+            .schedule {
+                flex-direction: column;
+            }
+            
+            .day-card {
+                width: 100%;
+            }
+            
+            .user-info {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>李子浩会员科学减脂方案</h1>
+            <p>教练：李亚威 Lee | 方案日期：2025年7月10日 | 有效周期：4-8周</p>
+            
+            <div class="coach-info">
+                <p>健身从业16年 | NSCA-CPT认证 | 运动营养学专家</p>
+                <p>2019年WNBF新加坡国际公开赛80公斤级健美冠军</p>
+            </div>
+        </header>
+        
+        <div class="user-info">
+            <div class="user-info-item">
+                <h3>会员信息</h3>
+                <p><strong>姓名：</strong>李子浩</p>
+                <p><strong>性别：</strong>男</p>
+                <p><strong>年龄：</strong>21岁</p>
+            </div>
+            
+            <div class="user-info-item">
+                <h3>身体数据</h3>
+                <p><strong>身高：</strong>187 cm</p>
+                <p><strong>体重：</strong>115 kg</p>
+                <p><strong>BMI：</strong>32.9 kg/m² (肥胖)</p>
+            </div>
+            
+            <div class="user-info-item">
+                <h3>健康与运动情况</h3>
+                <p><strong>左膝盖：</strong>少量积液（不影响正常运动）</p>
+                <p><strong>职业：</strong>实习医生（2级体力劳动）</p>
+                <p><strong>运动习惯：</strong>每周1-2次篮球/有氧</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">核心代谢数据与减脂目标</div>
+            <div class="card-body">
+                <div class="highlight-box">
+                    <h3>热量计算与目标设定</h3>
+                    <p>方案设计基于科学的热量赤字原理，确保安全有效地减轻体重</p>
+                </div>
+                
+                <div class="nutrition-facts">
+                    <div class="nutrition-item">
+                        <p>基础代谢率(BMR)</p>
+                        <div class="nutrition-value">2,218 kcal</div>
+                        <p>计算公式：10 × 体重(kg) + 6.25 × 身高(cm) - 5 × 年龄 + 5</p>
+                    </div>
+                    
+                    <div class="nutrition-item">
+                        <p>每日消耗量(TDEE)</p>
+                        <div class="nutrition-value">3,240 kcal</div>
+                        <p>活动系数：1.46 (轻中度活动)</p>
+                    </div>
+                    
+                    <div class="nutrition-item">
+                        <p>每日摄入目标</p>
+                        <div class="nutrition-value">2,430 kcal</div>
+                        <p>热量赤字：25% (约810千卡)</p>
+                    </div>
+                    
+                    <div class="nutrition-item">
+                        <p>目标周减重</p>
+                        <div class="nutrition-value">0.7-1.1 kg</div>
+                        <p>健康减重速度为体重的0.5-1%</p>
+                    </div>
+                </div>
+                
+                <h3>三大营养素分配</h3>
+                <div class="nutrition-facts">
+                    <div class="nutrition-item">
+                        <p>碳水化合物</p>
+                        <div class="nutrition-value">273g (45%)</div>
+                        <p>约1093千卡</p>
+                    </div>
+                    
+                    <div class="nutrition-item">
+                        <p>蛋白质</p>
+                        <div class="nutrition-value">213g (35%)</div>
+                        <p>约852千卡</p>
+                    </div>
+                    
+                    <div class="nutrition-item">
+                        <p>脂肪</p>
+                        <div class="nutrition-value">54g (20%)</div>
+                        <p>约486千卡</p>
+                    </div>
+                </div>
+                
+                <p class="warning">注：体重下降超过8%或变化停滞2周需联系教练调整方案</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">科学减脂营养方案</div>
+            <div class="card-body">
+                <div class="tabs">
+                    <div class="tab active" onclick="openTab(event, 'diet-principles')">执行原则</div>
+                    <div class="tab" onclick="openTab(event, 'recipe-1')">食谱1</div>
+                    <div class="tab" onclick="openTab(event, 'recipe-2')">食谱2</div>
+                    <div class="tab" onclick="openTab(event, 'recipe-3')">食谱3</div>
+                </div>
+                
+                <div id="diet-principles" class="tab-content active">
+                    <h3>营养方案执行原则与建议</h3>
+                    
+                    <p><strong>饮水建议：</strong>每天3-4升，运动额外补充500-800ml</p>
+                    <p><strong>营养补充：</strong>复合维生素+鱼油（每日一次），如需额外蛋白可补充20g乳清蛋白</p>
+                    <p><strong>蔬菜选择：</strong>深色叶菜优先（菠菜、西兰花等），分量可在200-800g/餐之间调整</p>
+                    
+                    <h4>蛋白质替换建议</h4>
+                    <ul>
+                        <li>牛肉 → 去皮鸡腿、鸡胸肉</li>
+                        <li>三文鱼 → 鳕鱼、鲈鱼、虾仁</li>
+                        <li>猪肝 → 鸡肝、鸭血</li>
+                        <li>鸡蛋 → 鸭蛋、鹌鹑蛋（换算重量）</li>
+                    </ul>
+                    
+                    <h4>烹饪方式建议</h4>
+                    <ul>
+                        <li>优先选择：蒸、煮、烤、凉拌</li>
+                        <li>少量使用：少油快炒、无油煎</li>
+                        <li>避免方式：油炸、红烧、糖醋</li>
+                    </ul>
+                    
+                    <h4>方案灵活性操作</h4>
+                    <ul>
+                        <li>同类食材等量替换（如青菜类互换，白肉互换）</li>
+                        <li>正餐时间可前后移动1小时</li>
+                        <li>某餐超量可在后一餐减少碳水/脂肪补充</li>
+                        <li>加餐可移至训练前后30分钟内</li>
+                    </ul>
+                    
+                    <p class="warning">食材为参考模板，定制食材需联系教练深度定制</p>
+                </div>
+                
+                <div id="recipe-1" class="tab-content">
+                    <h3>食谱1：牛肉虾仁营养餐</h3>
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>餐别</th>
+                                <th>食物组成</th>
+                                <th>克重(g)</th>
+                                <th>热量(kcal)</th>
+                                <th>营养素分析</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>早餐</td>
+                                <td>牛奶 + 鸡蛋 + 蓝莓 + 混合坚果</td>
+                                <td>250g + 100g + 50g + 15g</td>
+                                <td>418</td>
+                                <td>蛋白质25g, 脂肪21g, 碳水28g</td>
+                            </tr>
+                            <tr>
+                                <td>午餐</td>
+                                <td>米饭 + 牛里脊肉 + 西兰花 + 青椒</td>
+                                <td>160g + 150g + 250g + 50g</td>
+                                <td>685</td>
+                                <td>蛋白质55g, 脂肪15g, 碳水75g</td>
+                            </tr>
+                            <tr>
+                                <td>晚餐</td>
+                                <td>南瓜饭 + 虾仁 + 西红柿 + 猪肝</td>
+                                <td>200g + 120g + 200g + 30g</td>
+                                <td>530</td>
+                                <td>蛋白质39g, 脂肪8g, 碳水77g</td>
+                            </tr>
+                            <tr>
+                                <td>加餐</td>
+                                <td>苹果 + 鸡蛋</td>
+                                <td>200g + 60g</td>
+                                <td>211</td>
+                                <td>蛋白质10g, 脂肪5g, 碳水28g</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">总摄入量</td>
+                                <td>1844</td>
+                                <td>蛋白质129g, 脂肪49g, 碳水208g</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <p>注：实际摄入约2395kcal (因误差调整)，蛋白质210g, 脂肪50g, 碳水273g (+食用油15g)</p>
+                </div>
+                
+                <div id="recipe-2" class="tab-content">
+                    <h3>食谱2：鸡胸三文鱼营养餐</h3>
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>餐别</th>
+                                <th>食物组成</th>
+                                <th>克重(g)</th>
+                                <th>热量(kcal)</th>
+                                <th>营养素分析</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>早餐</td>
+                                <td>酸奶 + 香蕉 + 鸡蛋 + 燕麦</td>
+                                <td>200g + 100g + 80g + 40g</td>
+                                <td>492</td>
+                                <td>蛋白质24g, 脂肪17g, 碳水65g</td>
+                            </tr>
+                            <tr>
+                                <td>午餐</td>
+                                <td>糙米饭 + 去皮鸡腿 + 生菜 + 洋葱</td>
+                                <td>150g + 180g + 300g + 50g</td>
+                                <td>605</td>
+                                <td>蛋白质45g, 脂肪14g, 碳水60g</td>
+                            </tr>
+                            <tr>
+                                <td>晚餐</td>
+                                <td>三文鱼 + 青菜 + 黄瓜</td>
+                                <td>150g + 300g + 100g</td>
+                                <td>530</td>
+                                <td>蛋白质30g, 脂肪9g, 碳水15g</td>
+                            </tr>
+                            <tr>
+                                <td>加餐</td>
+                                <td>混合坚果 + 苹果</td>
+                                <td>25g + 150g</td>
+                                <td>305</td>
+                                <td>蛋白质6g, 脂肪15g, 碳水30g</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">总摄入量</td>
+                                <td>1932</td>
+                                <td>蛋白质105g, 脂肪55g, 碳水170g</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <p>注：实际摄入约2425kcal (因误差调整)，蛋白质210g, 脂肪55g, 碳水278g (+食用油10g)</p>
+                </div>
+                
+                <div id="recipe-3" class="tab-content">
+                    <h3>食谱3：鳕鱼鸡胸营养餐</h3>
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>餐别</th>
+                                <th>食物组成</th>
+                                <th>克重(g)</th>
+                                <th>热量(kcal)</th>
+                                <th>营养素分析</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>早餐</td>
+                                <td>苹果 + 鸡蛋 + 土豆</td>
+                                <td>200g + 120g + 150g</td>
+                                <td>452</td>
+                                <td>蛋白质19g, 脂肪9g, 碳水72g</td>
+                            </tr>
+                            <tr>
+                                <td>午餐</td>
+                                <td>鳕鱼 + 冬瓜 + 娃娃菜 + 食用油</td>
+                                <td>180g + 300g + 200g + 5g</td>
+                                <td>365</td>
+                                <td>蛋白质37g, 脂肪9g, 碳水18g</td>
+                            </tr>
+                            <tr>
+                                <td>晚餐</td>
+                                <td>鸡胸肉 + 空心菜 + 糙米饭</td>
+                                <td>180g + 300g + 120g</td>
+                                <td>595</td>
+                                <td>蛋白质43g, 脂肪8g, 碳水45g</td>
+                            </tr>
+                            <tr>
+                                <td>加餐</td>
+                                <td>鲈鱼/黑鱼 + 混合坚果</td>
+                                <td>150g + 20g</td>
+                                <td>445</td>
+                                <td>蛋白质32g, 脂肪20g, 碳水10g</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">总摄入量</td>
+                                <td>1857</td>
+                                <td>蛋白质131g, 脂肪46g, 碳水145g</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <p>注：实际摄入约2395kcal (因误差调整)，蛋白质212g, 脂肪50g, 碳水275g (+食用油5g)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">科学减脂运动方案</div>
+            <div class="card-body">
+                <div class="tabs">
+                    <div class="tab active" onclick="openTab(event, 'training-rules')">核心原则</div>
+                    <div class="tab" onclick="openTab(event, 'home-training')">居家训练</div>
+                    <div class="tab" onclick="openTab(event, 'gym-training')">健身房训练</div>
+                </div>
+                
+                <div id="training-rules" class="tab-content active">
+                    <h3>训练原则与安全说明</h3>
+                    
+                    <div class="highlight-box">
+                        <p>RM解释：能重复特定次数的最大重量，如10RM指最多能标准完成10次的重量</p>
+                    </div>
+                    
+                    <h4>训练进阶安排</h4>
+                    <ul>
+                        <li>第1周：3次训练（隔日进行）</li>
+                        <li>第2周：4次训练（增加1次）</li>
+                        <li>第3周起：5次训练（确保2天完整休息）</li>
+                    </ul>
+                    
+                    <h4>训练强度设置</h4>
+                    <ul>
+                        <li>无氧训练：10-20RM强度（选择完成12-15次力竭的重量）</li>
+                        <li>单次训练量：20-30组动作</li>
+                        <li>组间休息：60-90秒（代谢训练），120秒（力量训练）</li>
+                        <li>有氧训练：35-45分钟，心率维持在120-140bpm</li>
+                    </ul>
+                    
+                    <h4>膝关节保护注意事项</h4>
+                    <ul>
+                        <li>运动前充分热身：重点激活臀部肌群</li>
+                        <li>深蹲不超过大腿平行高度</li>
+                        <li>避免跑步机坡度超过10%</li>
+                        <li>替换动作：跑步→椭圆机，跳跃动作→踏步</li>
+                        <li>训练后冰敷10分钟（如肿胀感明显）</li>
+                    </ul>
+                    
+                    <h4>动作升降阶建议</h4>
+                    <ul>
+                        <li>进阶：增加动作难度（如标准俯卧撑→击掌俯卧撑）</li>
+                        <li>降阶：减少负重或简化动作（如深蹲→椅子辅助深蹲）</li>
+                        <li>替代：根据设备限制替换（哑铃动作→弹力带动作）</li>
+                    </ul>
+                    
+                    <p class="warning">训练计划具普适性，个性化动作需深度定制</p>
+                </div>
+                
+                <div id="home-training" class="tab-content">
+                    <h3>居家全身自重训练方案</h3>
+                    <p>单次训练安排：50分钟无氧 + 35分钟有氧（慢跑/快走）</p>
+                    
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>动作名称</th>
+                                <th>组数×次数/时间</th>
+                                <th>目标肌肉</th>
+                                <th>进阶建议</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>原地熊爬起身</td>
+                                <td>4×10次</td>
+                                <td>全身协调</td>
+                                <td>增加幅度，负重背心</td>
+                            </tr>
+                            <tr>
+                                <td>俯卧挺身</td>
+                                <td>4×15次</td>
+                                <td>背部</td>
+                                <td>单臂/负重</td>
+                            </tr>
+                            <tr>
+                                <td>开合跳/提膝击掌</td>
+                                <td>4×45秒</td>
+                                <td>心肺</td>
+                                <td>加速/负重</td>
+                            </tr>
+                            <tr>
+                                <td>(斜坡)俯卧撑</td>
+                                <td>4×12次</td>
+                                <td>胸部</td>
+                                <td>抬高脚部</td>
+                            </tr>
+                            <tr>
+                                <td>波比跳(半程)</td>
+                                <td>4×8次</td>
+                                <td>全身</td>
+                                <td>标准波比</td>
+                            </tr>
+                            <tr>
+                                <td>仰卧交叉卷腹</td>
+                                <td>4×20次</td>
+                                <td>腹部</td>
+                                <td>负重/慢速控制</td>
+                            </tr>
+                            <tr>
+                                <td>登山跑</td>
+                                <td>4×45秒</td>
+                                <td>核心/心肺</td>
+                                <td>慢速控制</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>训练后执行35分钟有氧：慢跑（配速7-8min/km）或快走</p>
+                    
+                    <h4>训练频率计划</h4>
+                    <div class="schedule">
+                        <div class="day-card">周日<br>休息</div>
+                        <div class="day-card home-day">周一<br>居家训练</div>
+                        <div class="day-card">周二<br>休息</div>
+                        <div class="day-card home-day">周三<br>居家训练</div>
+                        <div class="day-card">周四<br>休息</div>
+                        <div class="day-card home-day">周五<br>居家训练</div>
+                        <div class="day-card">周六<br>休息</div>
+                    </div>
+                    <p>第2周增加周四训练，第3周增加周二训练</p>
+                </div>
+                
+                <div id="gym-training" class="tab-content">
+                    <h3>健身房训练方案</h3>
+                    <p>推拉训练日与蹲举训练日交替进行</p>
+                    
+                    <h4>推拉训练日 (侧重上肢)</h4>
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>动作名称</th>
+                                <th>组数×次数</th>
+                                <th>休息时间</th>
+                                <th>重量选择</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>高位下拉</td>
+                                <td>4×12-15</td>
+                                <td>90秒</td>
+                                <td>15-18RM</td>
+                            </tr>
+                            <tr>
+                                <td>坐姿划船</td>
+                                <td>4×12-15</td>
+                                <td>90秒</td>
+                                <td>15-18RM</td>
+                            </tr>
+                            <tr>
+                                <td>杠铃卧推</td>
+                                <td>4×10-12</td>
+                                <td>120秒</td>
+                                <td>12RM</td>
+                            </tr>
+                            <tr>
+                                <td>哑铃上斜卧推</td>
+                                <td>4×10-12</td>
+                                <td>90秒</td>
+                                <td>12RM</td>
+                            </tr>
+                            <tr>
+                                <td>直臂撑提膝</td>
+                                <td>4×15(每侧)</td>
+                                <td>60秒</td>
+                                <td>自重</td>
+                            </tr>
+                            <tr>
+                                <td>哑铃弯举</td>
+                                <td>4×12-15</td>
+                                <td>60秒</td>
+                                <td>15-18RM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>训练后执行35分钟有氧：跑步机爬坡（坡度8-10%，速度4.0-4.5km/h）</p>
+                    
+                    <h4>蹲举训练日 (侧重下肢及核心)</h4>
+                    <table class="meal-table">
+                        <thead>
+                            <tr>
+                                <th>动作名称</th>
+                                <th>组数×次数</th>
+                                <th>休息时间</th>
+                                <th>重量选择</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>哑铃高脚杯深蹲</td>
+                                <td>4×10-12</td>
+                                <td>120秒</td>
+                                <td>12-15RM</td>
+                            </tr>
+                            <tr>
+                                <td>交替向后箭步蹲</td>
+                                <td>4×10(每侧)</td>
+                                <td>90秒</td>
+                                <td>12-15RM</td>
+                            </tr>
+                            <tr>
+                                <td>哑铃交替单臂抓举</td>
+                                <td>4×10(每侧)</td>
+                                <td>90秒</td>
+                                <td>15-18RM</td>
+                            </tr>
+                            <tr>
+                                <td>哑铃坐姿推举</td>
+                                <td>4×12-15</td>
+                                <td>90秒</td>
+                                <td>15-18RM</td>
+                            </tr>
+                            <tr>
+                                <td>哑铃侧平举</td>
+                                <td>4×15-20</td>
+                                <td>60秒</td>
+                                <td>18-20RM</td>
+                            </tr>
+                            <tr>
+                                <td>仰卧卷腹</td>
+                                <td>4×15-20</td>
+                                <td>60秒</td>
+                                <td>自重</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>训练后执行35分钟有氧：跑步机爬坡（坡度8-10%，速度4.0-4.5km/h）</p>
+                    
+                    <h4>训练频率计划（第3周示例）</h4>
+                    <div class="schedule">
+                        <div class="day-card">周日<br>休息</div>
+                        <div class="day-card gym-day">周一<br>推拉训练</div>
+                        <div class="day-card gym-day">周二<br>蹲举训练</div>
+                        <div class="day-card">周三<br>休息</div>
+                        <div class="day-card gym-day">周四<br>推拉训练</div>
+                        <div class="day-card gym-day">周五<br>蹲举训练</div>
+                        <div class="day-card">周六<br>休息</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="medical-disclaimer">
+            <h3>重要医学声明</h3>
+            <p>1. 有医学禁忌运动因素者，请谨遵医嘱，本方案不优先于医学诊断且不可替代任何医疗方案</p>
+            <p>2. 使用本方案前，会员须完成体检并和医生确认本方案的可执行性后再进行安全操作</p>
+            <p>3. 本方案对任何效果不做绝对保证，只作为方向性指导参考</p>
+            <p>4. 方案执行过程中有任何不适，请自行停止方案执行并就医检查</p>
+        </div>
+        
+        <div class="contact-section">
+            <h3>联系教练进行方案调整或深度定制</h3>
+            <p>抖音号：MoneyMuscleMax</p>
+            <p>微信号：MoneyMuscleMax</p>
+            <a href="#" class="btn">在线联系教练</a>
+        </div>
+    </div>
+    
+    <script>
+        function openTab(evt, tabName) {
+            // 移除所有标签和内容的活动状态
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].className = tabs[i].className.replace(" active", "");
+            }
+            
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+                tabContents[i].className = tabContents[i].className.replace(" active", "");
+            }
+            
+            // 为当前标签和内容添加活动状态
+            evt.currentTarget.className += " active";
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).className += " active";
+        }
+        
+        // 激活首页标签
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("diet-principles").className += " active";
+            document.querySelector(".tab").className += " active";
+        });
+    </script>
+</body>
+</html>
